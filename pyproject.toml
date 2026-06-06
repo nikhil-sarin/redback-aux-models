@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redback-aux-models"
+version = "0.1.0"
+description = "Auxiliary redback model plugins"
+requires-python = ">=3.10"
+dependencies = ["redback"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["redback_aux_models*"]
+
+[tool.setuptools.package-data]
+redback_aux_models = ["priors/*.prior"]
+
+[project.entry-points."redback.model.modules"]
+redback_aux_models = "redback_aux_models.models"
+
+[project.entry-points."redback.model.base_modules"]
+redback_aux_extinction_models = "redback_aux_models.extinction_models"
+redback_aux_lensing_models = "redback_aux_models.lensing_models"
+
+[project.entry-points."redback.model.priors"]
+redback_aux_priors = "redback_aux_models.priors:get_priors"
